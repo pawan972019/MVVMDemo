@@ -23,6 +23,7 @@ class NicePlaceRepository {
     private fun setDataSet() {
         dataSet = mutableListOf()
 
+
         dataSet.add(
             NicePlaces(
                 "Pune",
