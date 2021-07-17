@@ -15,9 +15,9 @@
         android:theme="@style/Theme.MVVMDemo"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
 
-        <activity android:name=".FruitActivity">
+        <activity android:name=".activity.FruitActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,65 +1,45 @@
-package com.example.mvvmdemo.adapters;
+package com.example.mvvmdemo.adapters
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mvvmdemo.R
+import com.example.mvvmdemo.databinding.ItemRowBinding
+import com.example.mvvmdemo.models.NicePlaces
+import java.util.*
 
-import androidx.annotation.NonNull;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.RecyclerView;
+class RecyclerBindingDataAdapter(context: Context, nicePlacesList: List<NicePlaces>) : RecyclerView.Adapter<RecyclerBindingDataAdapter.ViewHolder>() {
 
-import com.example.mvvmdemo.R;
-import com.example.mvvmdemo.databinding.ItemRowBinding;
-import com.example.mvvmdemo.models.NicePlaces;
+    var nicePlacesList: List<NicePlaces> = ArrayList()
+    var context: Context
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
-
-public class RecyclerBindingDataAdapter extends RecyclerView.Adapter<RecyclerBindingDataAdapter.ViewHolder> {
-
-    List<NicePlaces> nicePlacesList = new ArrayList<>();
-    Context context;
-
-    public RecyclerBindingDataAdapter(Context context, List<NicePlaces> nicePlacesList){
-
-        this.nicePlacesList = nicePlacesList;
-        this.context = context;
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding: ItemRowBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.item_row,
+            parent,
+            false
+        )
+        return ViewHolder(binding)
     }
 
-    @NotNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
-
-        ItemRowBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_row, parent, false);
-        return new ViewHolder(binding);
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val nicePlaces = nicePlacesList[position]
+        holder.itemRowBinding.nicePlace = nicePlaces
     }
 
-    @Override
-    public void onBindViewHolder(@NotNull ViewHolder holder, int position) {
-
-        NicePlaces nicePlaces = nicePlacesList.get(position);
-        holder.itemRowBinding.setNicePlace(nicePlaces);
+    override fun getItemCount(): Int {
+        return nicePlacesList.size
     }
 
-    @Override
-    public int getItemCount() {
-        return nicePlacesList.size();
+    class ViewHolder(var itemRowBinding: ItemRowBinding) : RecyclerView.ViewHolder(itemRowBinding.root) {
+        var recyclerBindingDataAdapter: RecyclerBindingDataAdapter? = null
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-
-        public ItemRowBinding itemRowBinding;
-
-        public RecyclerBindingDataAdapter recyclerBindingDataAdapter;
-
-        public ViewHolder(ItemRowBinding itemRowBinding) {
-            super(itemRowBinding.getRoot());
-            this.itemRowBinding = itemRowBinding;
-        }
+    init {
+        this.nicePlacesList = nicePlacesList
+        this.context = context
     }
 }
