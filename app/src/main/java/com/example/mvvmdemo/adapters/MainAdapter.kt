@@ -10,7 +10,7 @@ import com.example.mvvmdemo.databinding.ItemRowBinding
 import com.example.mvvmdemo.models.NicePlaces
 import java.util.*
 
-class RecyclerBindingDataAdapter(context: Context, nicePlacesList: List<NicePlaces>) : RecyclerView.Adapter<RecyclerBindingDataAdapter.ViewHolder>() {
+class MainAdapter(context: Context, nicePlacesList: List<NicePlaces>) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     var nicePlacesList: List<NicePlaces> = ArrayList()
     var context: Context
@@ -35,7 +35,7 @@ class RecyclerBindingDataAdapter(context: Context, nicePlacesList: List<NicePlac
     }
 
     class ViewHolder(var itemRowBinding: ItemRowBinding) : RecyclerView.ViewHolder(itemRowBinding.root) {
-        var recyclerBindingDataAdapter: RecyclerBindingDataAdapter? = null
+        var recyclerBindingDataAdapter: MainAdapter? = null
     }
 
     init {
