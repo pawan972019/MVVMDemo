@@ -1,5 +1,6 @@
 package com.example.mvvmdemo.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -41,6 +42,7 @@ class SplashActivity : AppCompatActivity() {
             if (response.isSuccessful && response.body() != null) {
                 val appConfigResponse = response.body()
                 Log.e(TAG, "onCreate: " + appConfigResponse!!.data.data.updateDetails.forceUpdateText)
+                startActivity(Intent(this, MainActivity::class.java))
             }else{
                 Log.e(TAG, "onCreate: ${response.errorBody().toString()}")
             }

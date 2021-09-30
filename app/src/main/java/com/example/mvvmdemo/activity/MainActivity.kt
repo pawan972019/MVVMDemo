@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mvvmdemo.R
 import com.example.mvvmdemo.adapters.MainAdapter
 import com.example.mvvmdemo.databinding.ActivityMainBinding
-import com.example.mvvmdemo.models.NicePlaces
+import com.example.mvvmdemo.models.AtcivityListModel
 import com.example.mvvmdemo.viewmodels.MainActivityViewModel
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         mainActivityViewModel!!.init()
 
-        val recyclerBindingDataAdapter = MainAdapter(this, mainActivityViewModel!!.nicePlaces!!.value as ArrayList)
+        val recyclerBindingDataAdapter = MainAdapter(this, mainActivityViewModel!!.atcivityListModel!!.value as ArrayList)
         mainBinding?.let { it.setNicePlaceAdapter(recyclerBindingDataAdapter) }
         mainBinding?.let { it.setOnClickListener(this) }
 
-        mainActivityViewModel!!.nicePlaces!!.observe(
+        mainActivityViewModel!!.atcivityListModel!!.observe(
             this,
             { recyclerBindingDataAdapter.notifyDataSetChanged() })
 
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             } else {
                 hideProgressBar()
             }
-            mainBinding?.let { it.placeRecyclerView.smoothScrollToPosition(mainActivityViewModel!!.nicePlaces!!.value!!.size - 1) }
+            mainBinding?.let { it.placeRecyclerView.smoothScrollToPosition(mainActivityViewModel!!.atcivityListModel!!.value!!.size - 1) }
         })
     }
 
@@ -49,12 +49,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         if (v === mainBinding!!.fab) {
-            mainActivityViewModel!!.addNewValue(
-                NicePlaces(
-                    "Jammu",
-                    "http://d2c018txhbneoo.cloudfront.net/wakau/videoThumbnail/6188-1616173281-1625460864.jpg"
-                )
-            )
+
         }
     }
 }

@@ -1,18 +1,21 @@
 package com.example.mvvmdemo.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmdemo.R
+import com.example.mvvmdemo.activity.FruitActivity
+import com.example.mvvmdemo.activity.RoomDBActivity
 import com.example.mvvmdemo.databinding.ItemRowBinding
-import com.example.mvvmdemo.models.NicePlaces
+import com.example.mvvmdemo.models.AtcivityListModel
 import java.util.*
 
-class MainAdapter(context: Context, nicePlacesList: List<NicePlaces>) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter(context: Context, atcivityListModelList: List<AtcivityListModel>) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
-    var nicePlacesList: List<NicePlaces> = ArrayList()
+    var atcivityListModelList: List<AtcivityListModel> = ArrayList()
     var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,12 +29,23 @@ class MainAdapter(context: Context, nicePlacesList: List<NicePlaces>) : Recycler
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val nicePlaces = nicePlacesList[position]
+
+        val nicePlaces = atcivityListModelList[position]
+
         holder.itemRowBinding.nicePlace = nicePlaces
+
+        holder.itemRowBinding.activityCardView.setOnClickListener {
+
+            if(position == 0){
+                context.startActivity(Intent(context, FruitActivity::class.java))
+            }else if(position == 1){
+                context.startActivity(Intent(context, RoomDBActivity::class.java))
+            }
+        }
     }
 
     override fun getItemCount(): Int {
-        return nicePlacesList.size
+        return atcivityListModelList.size
     }
 
     class ViewHolder(var itemRowBinding: ItemRowBinding) : RecyclerView.ViewHolder(itemRowBinding.root) {
@@ -39,7 +53,7 @@ class MainAdapter(context: Context, nicePlacesList: List<NicePlaces>) : Recycler
     }
 
     init {
-        this.nicePlacesList = nicePlacesList
+        this.atcivityListModelList = atcivityListModelList
         this.context = context
     }
 }

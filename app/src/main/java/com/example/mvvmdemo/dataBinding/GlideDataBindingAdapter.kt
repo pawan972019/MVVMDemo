@@ -8,6 +8,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 object GlideDataBindingAdapter {
 
+    @JvmStatic
     @BindingAdapter("imageUrl")
     fun setImageResource(circleImageView: CircleImageView, imageUrl: String?) {
         val mContext = circleImageView.context

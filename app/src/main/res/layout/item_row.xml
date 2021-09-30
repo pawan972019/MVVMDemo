@@ -5,13 +5,14 @@
     <data>
         <variable
             name="nicePlace"
-            type="com.example.mvvmdemo.models.NicePlaces" />
+            type="com.example.mvvmdemo.models.AtcivityListModel" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        android:id="@+id/activity_card_view">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

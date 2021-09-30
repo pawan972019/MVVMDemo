@@ -15,11 +15,19 @@
         android:theme="@style/Theme.MVVMDemo"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".activity.FruitActivity"/>
+        <activity
+            android:name=".activity.RoomDBActivity"
+            android:exported="true" />
 
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.FruitActivity"
+            android:exported="true"/>
 
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.MainActivity"
+            android:exported="true"/>
+
+        <activity android:name=".activity.SplashActivity"
+            android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,6 +1,6 @@
 package com.example.mvvmdemo.models
 
-class NicePlaces {
+class AtcivityListModel {
     var title: String? = null
     var imageUrl: String? = null
 
