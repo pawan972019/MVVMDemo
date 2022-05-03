@@ -21,22 +21,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         mainActivityViewModel!!.init()
 
-        val recyclerBindingDataAdapter = MainAdapter(this, mainActivityViewModel!!.atcivityListModel!!.value as ArrayList)
-        mainBinding?.let { it.setNicePlaceAdapter(recyclerBindingDataAdapter) }
-        mainBinding?.let { it.setOnClickListener(this) }
+        val recyclerBindingDataAdapter =
+            MainAdapter(this, mainActivityViewModel!!.atcivityListModel!!.value as ArrayList)
+        mainBinding?.let { it.nicePlaceAdapter = recyclerBindingDataAdapter }
+        mainBinding?.let { it.onClickListener = this }
 
-        mainActivityViewModel!!.atcivityListModel!!.observe(
-            this,
+        mainActivityViewModel!!.atcivityListModel!!.observe(this,
             { recyclerBindingDataAdapter.notifyDataSetChanged() })
 
-        mainActivityViewModel!!.isLoading.observe(this, { aBoolean ->
+        mainActivityViewModel!!.isLoading.observe(this) { aBoolean ->
             if (aBoolean) {
                 showProgressBar()
             } else {
                 hideProgressBar()
             }
             mainBinding?.let { it.placeRecyclerView.smoothScrollToPosition(mainActivityViewModel!!.atcivityListModel!!.value!!.size - 1) }
-        })
+        }
     }
 
     private fun showProgressBar() {
